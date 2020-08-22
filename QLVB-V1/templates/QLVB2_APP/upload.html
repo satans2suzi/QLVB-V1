@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% extends "QLVB2_APP/base.html" %}
+  {% block body_block %}
+  {% load static %}
+  <section class="content">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+        <div class="card-header">
+    <form method="POST" enctype="multipart/form-data">
+      <div class="form-row col-12">
+      {{form.errors}}
+      {% csrf_token %}
+      <!-- <div class="form-group col-7">
+        <input type="text" class="form-control" id="tenfile" name = "tenfile" placeholder="Tên văn bản upload lên " value='{{tenfile}}'>
+      </div> -->
+      <div class="form-group col-4 form-control">
+        {{form.duongdan}}
+      </div>
+      <input type="hidden" name ="nguoiupload" value="{{request.user.last_name}} {{request.user.first_name}}">
+      <input type="submit" class="col-2 btn btn-success form-control" value="Tải lên">
+    </div>
+ </form>
+</div>
+    <div class="card-body col-12">
+      {% if page_hienthi %}
+      <table  class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th class = "align-middle text-center"> STT</th>
+          <th class = "align-middle text-center" style="width: 40%">Danh sách các file upload</th>
+          <th class = "align-middle text-center" style="width: 20%">Thời gian tải lên </th>
+          <th class = "align-middle text-center" style="width: 20%">Tài khoản tải lên </th>
+          <th class = "align-middle text-center" style="width: 20%">Tải về </th>
+        </tr>
+      </thead>
+      {% for duongdan in page_hienthi %}
+      <tbody>
+          <tr>
+            <td class = " align-middle text-center">{{duongdan.id}}</td>
+            <td class = "align-middle" style="text-align: justify;width: 40%">{{ duongdan.duongdan}}</td>
+            <td class = " align-middle text-center" style="width:  20%">{{ duongdan.ngayup|date:"d/n/Y"}}</td>
+            <td class = " align-middle text-center" style="width:  20%">{{ duongdan.nguoiupload}}</td>
+            <td class = " align-middle text-center" style="width: 20%">
+              <a href="{{ duongdan.duongdan.url }}" class="btn btn-warning btn-sm"</a> Tải file
+            </td>
+          </tr>
+        </tbody>
+    {% endfor %}
+    {% if page_hienthi.has_other_pages %}
+    <!-- <span class="form-control"><a href="{% url 'QLVB2_APP:export_csv' %}">Export</a> -->
+    <ul class="pagination col-1">
+      {% if page_hienthi.has_previous %}
+        <li><a class="form-control" href="?page={{ page_hienthi.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+        <li class="disabled form-control"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in page_hienthi.paginator.page_range %}
+        {% if page_hienthi.number == i %}
+          <li class="active text-red form-control"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+          <li><a class="form-control" href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if page_hienthi.has_next %}
+        <li><a class="form-control" href="?page={{ page_hienthi.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        <li class="disabled form-control"><span>&raquo;</span></li>
+
+      {% endif %}
+      <!-- <span ><a class="form-control text-blue" href="{% url 'QLVB2_APP:export_csv' %}">Export</a></span> -->
+      <!-- <span class="form-control"><a href="#">Export</a> -->
+    </ul>
+    {% endif %}
+  </table>
+    {% else %}
+    <p>Không tìm thấy dữ liệu nào.</p>
+    {% endif %}
+  </div>
+</div>
+</div>
+</div>
+</section>
+  {% endblock %}

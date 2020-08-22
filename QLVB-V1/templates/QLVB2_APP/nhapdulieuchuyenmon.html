@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% extends "QLVB2_APP/base.html" %}
+  {% block body_block %}
+    {% load static %}
+      <div class="row">
+        <!-- thay đổi chiều rộng ở đây (giá trị 12 full, 6 là 2 ô) -->
+        <div class="col-lg-12">
+          <div class="card">
+           <div class="card-body">
+             <!-- START FORM -->
+             <form method="POST">
+                 {{form.errors}}
+               {% csrf_token %}
+               <div class="form-row">
+                   <div class="input-group">
+                     <div class="input-group-prepend">
+                       <span class="input-group-text">Nội dung thực hiện</span>
+                     </div>
+                     <textarea class="form-control" aria-label="With textarea" id = "doidung_name" name = "doidung_name" type="Textarea" value='{{doidung_name}}'></textarea>
+                   </div>
+                   <!-- ........ -->
+                 <div class="col-md-4 mb-4 ">
+                   <label >Thực hiện</label>
+                   <select class="form-control" id="thuchien_name" name="thuchien_name">
+                     <option value="" disabled selected hidden>Chọn thực hiện</option>
+                      {%for thuchien_name in thuchien_data %}
+                      <option value="{{thuchien_name.id}}">
+                        {{thuchien_name}}
+                      </option>{%endfor%}
+                  </select>
+                 </div>
+                 <!-- ..... -->
+
+                 <!-- <input type="date" name="ketthuc_name" value="{{ketthuc_name}}"> -->
+                 <div class="col-md-4 mb-4">
+                   <label > Kết thúc </label>
+                   <input placeholder="Thời gian kết thúc" class="form-control" type="text" onfocus="(this.type='date')" id = "ketthuc_name" name = "ketthuc_name" value='{{ketthuc_name|date:"d/n/Y"}}'>
+                 </div>
+                 <div class="col-md-4 mb-3">
+                   <label for="customer_type" class="col-sm-12 control-label"> Kết quả </label>
+                      <select class="form-control" id="tiendo_name" name="tiendo_name">
+                        <option value="" disabled selected hidden>Chọn kết quả</option>
+                         {%for tiendo_name in tiendo_data %}
+                         <option value="{{tiendo_name.id}}">
+                           {{tiendo_name}}
+                         </option>{%endfor%}
+                     </select>
+                 </div>
+                 <div class="input-group">
+                   <div class="input-group-prepend">
+                     <span class="input-group-text">Ghi chú</span>
+                   </div>
+                   <textarea class="form-control" aria-label="With textarea" id = "Ghichu_name" name = "Ghichu_name" type="Textarea" value='{{Ghichu_name}}'></textarea>
+                 </div>
+                 </div>
+               </br>
+               <input type="submit" class="btn btn-primary" value="Thêm mới">
+          </form></br>
+          <!-- END FORM -->
+          {% if congtacchuyenmon_record %}
+          <table  class="table table-bordered table-hover">
+            <thead>
+            <tr>
+              <th class = "align-middle text-center" >STT</th>
+              <th class = "align-middle text-center" style="width: 30%">Nội dung thực hiện</th>
+              <th class = "align-middle text-center" style="width: 10%">Thực hiện</th>
+              <th class = "align-middle text-center" style="width: 10%">Thời gian Kết thúc</th>
+              <th class = "align-middle text-center" style="width: 10%">Kết quả</th>
+              <th class = "align-middle text-center" style="width: 30%">Ghi chú (Căn cứ triển khai)</th>
+              <th class = "align-middle text-center" style="width: 20%">Chỉnh sửa</th>
+            </tr>
+          </thead>
+          {% for x in congtacchuyenmon_record %}
+          <tbody>
+              <tr>
+                <td class = "align-middle text-center" >{{ x.stt_name }}</td>
+                <td class = "align-middle" style="text-align: justify;width: 30%">{{ x.doidung_name}}</td>
+                <td class = " align-middle text-center" style="width: 10%">{{ x.thuchien_name }}</td>
+                <td class = " align-middle text-center" style="width: 10%">{{ x.ketthuc_name|date:"d/n/Y" }}</td>
+                <td class = " align-middle text-center" style="width: 10%">{{ x.tiendo_name}}</td>
+                <td class = " align-middle " style="text-align: justify;width: 30%">{{ x.Ghichu_name}}</td>
+                <td class = " align-middle text-center" style="width: 20%" >
+                  <a href="{% url 'QLVB2_APP:edit_congviec' x.stt_name %}" class="btn btn-warning btn-sm"> Sửa</a>
+                  <a href="{% url 'QLVB2_APP:delete_congviec' x.stt_name %}" class="btn btn-sm btn-danger"> Xóa</a>
+                </td>
+              </tr>
+            </tbody>
+        {% endfor %}
+      </table>
+        {% else %}
+        <p>Không tìm thấy dữ liệu nào.</p>
+        {% endif %}
+          </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}

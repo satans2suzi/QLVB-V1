@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+  {% load static %}
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Phòng Giám sát an ninh mạng</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome -->
+  <!-- <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css"> -->
+  <link rel="stylesheet" href="{% static "admin-lte/plugins/fontawesome-free/css/all.min.css" %} "/>
+  <!-- Ionicons -->
+  <!-- <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" > -->
+    <link rel="stylesheet" href="{% static "admin-lte/dist/css/ionicons.min.css" %}"/>
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{% static "admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css" %}"/>
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static "admin-lte/dist/css/adminlte.min.css" %}"/>
+  <!-- Google Font: Source Sans Pro -->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> -->
+  <link rel="stylesheet" href="{% static "admin-lte/dist/css/google.css" %}"/>
+</head>
+<body class="hold-transition login-page">
+  <div class="jumbotron card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg"><strong>Đăng nhập để truy cập vào hệ thống</strong></p>
+      <form method="POST">
+        {% csrf_token %}
+        <div class = "input-group mb-3">
+        <label >Tài khoản</label>
+        <input type="text" name="username" placeholder="Tài khoản" class="form-control">
+        </div>
+        <div class = "input-group mb-3">
+        <label >Mật khẩu</label>
+        <input type="password" name="password" placeholder="Mật khẩu" class="form-control">
+        </div>
+        <div class = "input-group mb-3">
+        <input type="submit" value="Đăng nhập">
+        </div>
+      </form>
+      {% for message in messages %}
+      <p id = "message"> {{message}}</p>
+      {% endfor %}
+  </div>
+  </div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="{% static "admin-lte/plugins/jquery/jquery.min.js" %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static "admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js"  %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static "admin-lte/dist/js/adminlte.min.js" ></script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+{% extends 'QLVB2_APP/base.html' %}
+  {% block body_block %}
+<div class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg"><strong> ĐĂNG NHẬP VÀO HỆ THỐNG</strong></p>
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          <!-- <input type="text" class="form-control" name="username" placeholder="Tài khoản"> -->
+          <input type="text" name="username" placeholder="Tài khoản" class="form-control">
+          <div class="input-group-append">
+            <div class="input-group-text">
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" name="password" placeholder="Mật khẩu">
+            <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="icheck-primary">
+              <input type="checkbox" id="remember">
+              <label for="remember">
+                Ghi nhớ
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-5">
+            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+      <p class="mb-1">
+        <a href="#">Quên mật khẩu</a>
+      </p>
+      <p class="mb-0">
+        <a href="{% url 'QLVB2_APP:register' %}" class="text-center">Đăng ký tài khoản</a>
+        <!-- <a href="#">Đăng ký tài khoản</a> -->
+      </p>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+</div>
+
+{% endblock %}

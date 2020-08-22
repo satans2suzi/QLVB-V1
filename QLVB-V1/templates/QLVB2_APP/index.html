@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+{% extends "QLVB2_APP/base.html"%}
+  {% block body_block %}
+  {% load static %}
+</br>
+  <section class="content">
+          <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-gray">
+            <div class="inner">
+              <h3>{{ soluong }}<sup style="font-size: 20px"></sup></h3>
+              <p>Tổng số công việc</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="{% url 'QLVB2_APP:tongsocongviec' %}" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-success">
+            <div class="inner">
+              <h3>{{ hoanthanh }}<sup style="font-size: 20px"></sup></h3>
+              <p>Đã hoàn thành</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="{% url 'QLVB2_APP:hoanthanh' %}" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-2 col-4">
+          <!-- small box -->
+          <div class="small-box bg-blue">
+            <div class="inner">
+              <h3>{{dangthuchien}}</h3>
+              <p>Đang thực hiện</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="{% url 'QLVB2_APP:dangthuchien' %}" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-4">
+          <!-- small box -->
+          <div class="small-box bg-warning">
+            <div class="inner">
+              <h3>{{giahan}}</h3>
+              <!-- <p>New Orders</p> -->
+                <p>Gia hạn thời gian</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="{% url 'QLVB2_APP:giahan' %}" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+        </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-2 col-4">
+          <!-- small box -->
+          <div class="small-box bg-danger">
+            <div class="inner">
+              <h3>{{cham}}</h3>
+              <p>Chậm tiến độ</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="{% url 'QLVB2_APP:chamtiendo' %}" class="small-box-footer">Chi tiết <i class="fas fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
+      <!-- Main row -->
+      <section class="content">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+            <div class="card-header">
+              <form method="get">
+              <div  class="form-row">
+                {% if bctuan_data %}
+                <table  class="table table-bordered ">
+                  <thead>
+                  <tr>
+                    <th class = "align-middle text-center" style="width: 90%">Công việc trong tuần</th>
+                    <th class = "align-middle text-center" style="width: 10%">Thời gian</th>
+                    <!-- <th class = "align-middle text-center" style="width: 30%">Thay đổi</th> -->
+                  </tr>
+                </thead>
+                {% for x in bctuan_data %}
+                <tbody>
+                    <tr>
+                      <!-- <td class = "align-middle" style="text-align: justify;width: 90%">{{ x.noidung_bct}}</td> -->
+                      <td class = "align-middle" style="text-align: justify;white-space: pre-wrap; word-wrap: break-word;width: 90%">{{ x.noidung_bct}}</td>
+                      <td class = " align-middle " style="text-align: justify;width: 10%">{{ x.ghichu_bct}}</td>
+                      <!-- <td class = " align-middle text-center" style="width: 30%" >
+                        <a href="{% url 'QLVB2_APP:edit_bctuan' x.stt_bct %}" class="btn btn-warning btn-sm">Sửa</a>
+                        <a href="{% url 'QLVB2_APP:dulieubaocaotuan' %}" class="btn btn-success btn-sm">Thêm</a>
+                      </td> -->
+                    </tr>
+                  </tbody>
+              {% endfor %}
+            </table>
+            {% endif %}
+              </div>
+            </form>
+            </div>
+              <!-- /.card-header -->
+              <div class="card-header">
+                <form method="get">
+                <div  class="form-row">
+                <!-- <div class="col-2 ">
+                  <select class="form-control" id="thuchien_name" name="thuchien_name">
+                    <option value="" disabled selected hidden>Chọn thực hiện</option>
+                     {%for thuchien_name in thuchien_data %}
+                     <option value="{{thuchien_name.id}}">
+                       {{thuchien_name}}
+                     </option>{%endfor%}
+                 </select>
+                </div> -->
+                <!-- <div class="col-3 ">
+                  <span placeholder " Tiến độ " class="form-control"> {{Myfilter.form.tiendo_name}}</span>
+                </div> -->
+                <div class="col-2 ">
+                  <select class="form-control" id="tiendo_name" name="tiendo_name">
+                    <option value="" disabled selected hidden>Chọn kết quả</option>
+                     {%for tiendo_name in tiendo_data %}
+                     <option value="{{tiendo_name.id}}">
+                       {{tiendo_name}}
+                     </option>{%endfor%}
+                 </select>
+                </div>
+                <div class="col-3 ">
+                    <input placeholder="Từ ngày" class="form-control" type="text" onfocus="(this.type='date')" id = "star_date" name = "star_date" value='{{star_date|date:"d/n/Y"}}' />
+                </div>
+                <div class="col-3 ">
+                  <input placeholder="Đến ngày" class="form-control" type="text" onfocus="(this.type='date')" id = "end_date" name = "end_date" value='{{end_date|date:"d/n/Y"}}' />
+                </div>
+                <div class="col-2">
+                  <button type="submit" class = "btn btn-outline-primary btn-sm form-control" >Tìm kiếm </button>
+                </div>
+                <div class="col-2">
+                  <a class = "btn btn-success btn-bm form-control" href="{% url 'QLVB2_APP:nhapdulieu_chuyenmon' %}">Thêm mới nhiệm vụ</a>
+                </div>
+              </form>
+              </div>
+            </div>
+              <div class="card-body">
+                {% if page_hienthi %}
+                <table  class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th class = "align-middle text-center" >STT</th>
+                    <th class = "align-middle text-center" style="width: 30%">Nội dung thực hiện</th>
+                    <!-- <th class = "align-middle text-center" style="width: 10%">Thực hiện</th> -->
+                    <th class = "align-middle text-center" style="width: 10%">Thời gian Kết thúc</th>
+                    <th class = "align-middle text-center" style="width: 20%">Kết quả</th>
+                    <th class = "align-middle text-center" style="width: 30%">Ghi chú (Căn cứ triển khai)</th>
+                    <th class = "align-middle text-center" style="width: 20%">Chỉnh sửa</th>
+                  </tr>
+                </thead>
+                {% for x in page_hienthi %}
+                <tbody>
+                    <tr>
+                      <td class = "align-middle text-center" >{{ x.stt_name }}</td>
+                      <td class = "align-middle" style="text-align: justify;width: 30%">{{ x.doidung_name}}</td>
+                      <!-- <td class = " align-middle text-center" style="width: 10%">{{ x.thuchien_name }}</td> -->
+                      <td class = " align-middle text-center" style="width: 10%">{{ x.ketthuc_name|date:"d/n/Y" }}</td>
+                      <td class = " align-middle text-center" style="width: 20%">{{ x.tiendo_name}}</td>
+                      <td class = " align-middle " style="text-align: justify;width: 30%">{{ x.Ghichu_name}}</td>
+                      <td class = " align-middle text-center" style="width: 20%" >
+                        <a href="{% url 'QLVB2_APP:edit_congviec' x.stt_name %}" class="btn btn-warning btn-sm"> Sửa</a>
+                        <a href="{% url 'QLVB2_APP:delete_congviec' x.stt_name %}" class="btn btn-sm btn-danger"> Xóa</a>
+                      </td>
+                    </tr>
+                  </tbody>
+              {% endfor %}
+                  {% if page_hienthi.has_other_pages %}
+                  <!-- <span class="form-control"><a href="{% url 'QLVB2_APP:export_csv' %}">Export</a> -->
+                  <ul class="pagination col-1">
+                    {% if page_hienthi.has_previous %}
+                      <li><a class="form-control" href="?page={{ page_hienthi.previous_page_number }}">&laquo;</a></li>
+                    {% else %}
+                      <li class="disabled form-control"><span>&laquo;</span></li>
+                    {% endif %}
+                    {% for i in page_hienthi.paginator.page_range %}
+                      {% if page_hienthi.number == i %}
+                        <li class="active text-red form-control"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                      {% else %}
+                        <li><a class="form-control" href="?page={{ i }}">{{ i }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+                    {% if page_hienthi.has_next %}
+                      <li><a class="form-control" href="?page={{ page_hienthi.next_page_number }}">&raquo;</a></li>
+                      {% else %}
+                      <li class="disabled form-control"><span>&raquo;</span></li>
+
+                    {% endif %}
+                    <span ><a class="form-control text-blue" href="{% url 'QLVB2_APP:export_csv' %}">Export</a></span>
+                    <!-- <span class="form-control"><a href="#">Export</a> -->
+                  </ul>
+                  {% endif %}
+            </table>
+              {% else %}
+              <p>Không tìm thấy dữ liệu nào.</p>
+              {% endif %}
+            </div>
+              <!-- /.card-body -->
+            <!-- /.card -->
+
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+      </div>
+        <!-- /.row -->
+      </section>
+
+  </section>
+  {% endblock %}

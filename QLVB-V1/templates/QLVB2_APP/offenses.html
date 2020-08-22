@@ -1,0 +1,264 @@
+!DOCTYPE html>
+{% extends "QLVB2_APP/base.html" %}
+{% block body_block %}
+<div class="card-body ">
+                    <form method="post" action="?">
+                        <div class="px-1 px-sm-5 mx-auto">
+                            <div class="row">
+                                <div class="col-sm-3 col-xl-3">
+                                    <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                        <!-- <label class="control-label" for="datepicker-start">Start Date</label> -->
+                                        <input value="Start time" type="text" class="form-control"
+                                            id="datepicker-start" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-xl-3">
+                                    <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                        <input value="End time" placeholder="text" class="form-control"
+                                            id="datepicker-end" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-xl-3">
+                                    {% csrf_token %}
+                                    <input type="submit" class="btn btn-outline-primary" value="Search" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <table id="dtHorizontalTable" class="table table-bordered table-striped ">
+                        <!-- <table id="dtHorizontalExample" class="table table-striped table-bordered" width="100%"> -->
+                        <thead>
+                            <tr>
+                                <th scope="row">#</th>
+                                <th scope="row">Access</th>
+                                <th scope="row">Application</th>
+                                <th scope="row">Authentication</th>
+                                <th scope="row">DoS</th>
+                                <th scope="row">Exploit</th>
+                                <th scope="row">Malware</th>
+                                <th scope="row">Policy</th>
+                                <th scope="row">Potentital Exploit</th>
+                                <th scope="row">Recon</th>
+                                <th scope="row">Risk</th>
+                                <th scope="row">Suspicious</th>
+                                <th scope="row">System</th>
+                                <th scope="row">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="fixed-side" scope="row">Ban Cơ yếu Chính phủ</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th class="fixed-side" scope="row">Văn phòng Chính phủ</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th class="fixed-side" scope="row">Bộ Ngoại giao</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th class="fixed-side" scope="row">Bộ Tư pháp</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th class="fixed-side" scope="row">Bộ Khoa học Công nghệ</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th class="fixed-side" scope="row">TP. Hà Nội</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th class="fixed-side" scope="row">TP. Hồ Chí Minh</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th class="fixed-side" scope="row">TP. Đà Nẵng</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th class="fixed-side" scope="row">Tỉnh Thái Bình</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th class="fixed-side" scope="row">Tỉnh Bắc Ninh</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th class="fixed-side" scope="row">Tỉnh Quảng Nam</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th class="fixed-side" scope="row">Tạp chí ATTT</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                            <tr>
+                                <th class="fixed-side" scope="row">Hà Nội IDC</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>@mdo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

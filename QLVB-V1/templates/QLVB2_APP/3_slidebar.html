@@ -1,0 +1,96 @@
+{% load static %}
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <div class="brand-link">
+      <img src="{% static "admin-lte/dist/img/BCY93x100.png" %} " alt="BCYE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+           <!-- thay đổi giá trị để vừa với menu search:    .text-sm{font-size -->
+           {% if user.is_authenticated %}
+           <span class="brand-text font-weight-dark text-warning"> {{request.user.last_name}} {{request.user.first_name}} </span></br>
+           <a class="brand-text font-weight-dark text-danger" href="{% url 'QLVB2_APP:logout' %}" >Đăng xuất</a>
+         {% else %}
+         <a href="{% url 'QLVB2_APP:login' %}" class="brand-text font-weight-dark text-blue">Đăng nhập</a>
+       {% endif %}
+        <!-- <span class="brand-text font-weight-dark"> TRUNG TÂM CNTT&GSANM </span></br>
+        <span class="brand-text font-weight-dark"><strong> PHÒNG GIÁM SÁT AN NINH MẠNG </strong></span></br> -->
+    </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="/static/admin-lte/dist/img/user3-128x128.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          {% if user.is_authenticated %}
+          <li> <span class="text-primary"> Xin chào {{request.user}} </span>|
+          <a href="{% url 'QLVB2_APP:logout' %} class="class="text-danger">Đăng xuất
+          </a>
+        </li>
+        {% else %}
+        <li >
+        <a href="{% url 'QLVB2_APP:login' %}" class="text-primary">Đăng nhập
+        </a>
+      </li>
+      {% endif %}
+        </div>
+      </div> -->
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column nav-legacy" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item has-treeview">
+            <a href="{% url 'QLVB2_APP:index' %}" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Thống kê nhiệm vụ
+                <!-- <i class="right fas fa-angle-left"></i> -->
+              </p>
+            </a>
+            <li class="nav-item has-treeview">
+            <a href="{% url 'QLVB2_APP:dulieubaocaotuan' %}" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Công việc theo tuần
+              </p>
+            </a>
+          </li>
+          <!-- <li class="nav-item has-treeview">
+          <a href="{% url 'QLVB2_APP:nhapdulieu_chuyenmon' %}" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              Số liệu giám sát
+            </p>
+          </a>
+        </li> -->
+        <li class="nav-item has-treeview">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-chart-pie"></i>
+          <p>
+            Quản lý tài sản
+          </p>
+        </a>
+      </li>
+        <li class="nav-item has-treeview">
+        <a href="{% url 'QLVB2_APP:bangcap' %}" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Bằng cấp chứng chỉ
+          </p>
+        </a>
+      </li>
+      <li class="nav-item has-treeview">
+        {% comment %} <a href="{% url 'QLVB2_APP:taisan' %}" class="nav-link"> {% endcomment %}
+        <a href="{% url 'offenses:offenses' %}" class="nav-link">
+          <i class="nav-icon fas fa-table"></i>
+          <p>
+            Offenses
+          </p>
+        </a>
+      </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

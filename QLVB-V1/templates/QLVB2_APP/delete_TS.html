@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% extends "QLVB2_APP/base.html" %}
+  {% block body_block %}
+    {% load static %}
+    <div class="row">
+      <!-- thay đổi chiều rộng ở đây (giá trị 12 full, 6 là 2 ô) -->
+      <div class="col-lg-12">
+        <div class="card">
+         <div class="card-body">
+			<p>Cán bộ đã chắc chắn muốn xóa tài sản "{{delete_taisan}}" chưa?</p>
+			<form action="{% url 'QLVB2_APP:delete_taisan' delete_taisan.stt_ts  %}" method="POST">
+				{% csrf_token %}
+				<a class="btn btn-warning" href="{% url 'QLVB2_APP:taisan' %}">Trở về</a>
+				<input class="btn btn-danger" type="submit" name="Confirm"></iput>
+
+			</form>
+    </div>
+    </div>
+    </div>
+  </div>
+{% endblock %}
