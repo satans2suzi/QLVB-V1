@@ -23,6 +23,6 @@ from offenses import views
 urlpatterns = [
     url('admin/', admin.site.urls),
     # url('^$',ql.views.index, name='index'),
-    # url('',include('QLVB2_APP.urls')),
-    url('',include('offenses.urls')),
+    url('',include('QLVB2_APP.urls')),
+    # url('',include('offenses.urls')),
 ]
