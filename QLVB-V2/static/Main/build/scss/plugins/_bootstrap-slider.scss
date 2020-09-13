@@ -1,7 +1,11 @@
-/*
- * Plugin: Bootstrap Slider
- * ---------------------
- */
+//
+// Plugin: Bootstrap Slider
+//
+
+// Tooltip fix
+.slider .tooltip.in {
+  opacity: $tooltip-opacity;
+}
 
 // Style override
 .slider {
@@ -14,7 +18,7 @@
 }
 
 // Colors
-@each $name, $color in $colors {
+@each $name, $color in $theme-colors {
   .slider-#{$name} .slider {
     .slider-selection {
       background: $color;
@@ -22,4 +26,10 @@
   }
 }
 
-
+@each $name, $color in $colors {
+  .slider-#{$name} .slider {
+    .slider-selection {
+      background: $color;
+    }
+  }
+}

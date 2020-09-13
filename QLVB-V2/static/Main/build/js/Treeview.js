@@ -32,16 +32,19 @@ const Treeview = (($) => {
   }
 
   const ClassName = {
-    LI           : 'nav-item',
-    LINK         : 'nav-link',
-    TREEVIEW_MENU: 'nav-treeview',
-    OPEN         : 'menu-open'
+    LI               : 'nav-item',
+    LINK             : 'nav-link',
+    TREEVIEW_MENU    : 'nav-treeview',
+    OPEN             : 'menu-open',
+    SIDEBAR_COLLAPSED: 'sidebar-collapse'
   }
 
   const Default = {
-    trigger       : `${Selector.DATA_WIDGET} ${Selector.LINK}`,
-    animationSpeed: 300,
-    accordion     : true
+    trigger              : `${Selector.DATA_WIDGET} ${Selector.LINK}`,
+    animationSpeed       : 300,
+    accordion            : true,
+    expandSidebar        : false,
+    sidebarButtonSelector: '[data-widget="pushmenu"]'
   }
 
   /**
@@ -69,16 +72,20 @@ const Treeview = (($) => {
         this.collapse(openTreeview, openMenuLi)
       }
 
-      treeviewMenu.slideDown(this._config.animationSpeed, () => {
+      treeviewMenu.stop().slideDown(this._config.animationSpeed, () => {
         parentLi.addClass(ClassName.OPEN)
         $(this._element).trigger(expandedEvent)
       })
+
+      if (this._config.expandSidebar) {
+        this._expandSidebar()
+      }
     }
 
     collapse(treeviewMenu, parentLi) {
       const collapsedEvent = $.Event(Event.COLLAPSED)
 
-      treeviewMenu.slideUp(this._config.animationSpeed, () => {
+      treeviewMenu.stop().slideUp(this._config.animationSpeed, () => {
         parentLi.removeClass(ClassName.OPEN)
         $(this._element).trigger(collapsedEvent)
         treeviewMenu.find(`${Selector.OPEN} > ${Selector.TREEVIEW_MENU}`).slideUp()
@@ -87,13 +94,23 @@ const Treeview = (($) => {
     }
 
     toggle(event) {
+
       const $relativeTarget = $(event.currentTarget)
-      const treeviewMenu    = $relativeTarget.next()
+      const $parent = $relativeTarget.parent()
+
+      let treeviewMenu = $parent.find('> ' + Selector.TREEVIEW_MENU)
 
       if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
-        return
-      }
 
+        if (!$parent.is(Selector.LI)) {
+          treeviewMenu = $parent.parent().find('> ' + Selector.TREEVIEW_MENU)
+        }
+
+        if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
+          return
+        }
+      }
+      
       event.preventDefault()
 
       const parentLi = $relativeTarget.parents(Selector.LI).first()
@@ -114,15 +131,21 @@ const Treeview = (($) => {
       })
     }
 
+    _expandSidebar() {
+      if ($('body').hasClass(ClassName.SIDEBAR_COLLAPSED)) {
+        $(this._config.sidebarButtonSelector).PushMenu('expand')
+      }
+    }
+
     // Static
 
     static _jQueryInterface(config) {
       return this.each(function () {
-        let data      = $(this).data(DATA_KEY)
-        const _config = $.extend({}, Default, $(this).data())
+        let data = $(this).data(DATA_KEY)
+        const _options = $.extend({}, Default, $(this).data())
 
         if (!data) {
-          data = new Treeview($(this), _config)
+          data = new Treeview($(this), _options)
           $(this).data(DATA_KEY, data)
         }
 
